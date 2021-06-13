@@ -1,5 +1,6 @@
 -- Connect to the 'master' database to run this snippet
 USE master
+DROP DATABASE VIDEOLOCADORA -- Reset DataBase
 GO
 
 -- Create the new database if it does not exist already
@@ -89,16 +90,16 @@ INSERT INTO dbo.CATEGORIA VALUES
 -- &&& INSERTS CLIENTES &&& --
 SET DATEFORMAT ymd;
 INSERT INTO dbo.CLIENTES VALUES
-('32132232323', 'Edson Martin Feitosa',              'Rua Orlando Alvarenga, 1',      'JD. Vera Cruz',          'Sorocaba',   'SP', '998988778', 'edson@terra.com.br',   '1982-04-29 00:00:00.000'),
-('12341234123', 'Rafael Fernando de Moreaes Moreno', 'Rua Francisco de Souza, 123',   'JD. Nova Esperança',     'São Roque',  'SP', '993423432', 'rafael@uou.com.br',    '1981-05-28 00:00:00.000'),
-('34563456345', 'JOão da Silva',                     'Rua Mario Quintana, 132',       'JD. Bartolomeu',         'Sorocaba',   'SP', '998458778', 'joao@ig.com.br',       '1980-06-27 00:00:00.000'),
-('57456824367', 'Maria Chiquinha',                   'Rua Padre Luiz, 1345',          'JD. Vera Cruz',          'Sorocaba',   'SP', '993458778', 'maria@terra.com.br',   '1983-07-26 00:00:00.000'),
-('45987654673', 'Rafael Nunes Sales',                'Rua Orlando Alvarenga, 174',    'JD. Vera Cruz',          'Sorocaba',   'SP', '998934548', 'rafael@ig.com.br',     '1984-08-25 00:00:00.000'),
-('63298424566', 'Daniela Martin Feitosa',            'Rua Guilherme Oliveira, 34561', 'JD. Vera das Acássicas', 'Votorantim', 'SP', '958988778', 'daniela@uou.com.br',   '1985-09-24 00:00:00.000'),
-('24842347854', 'Renata Cristina',                   'Rua Orlando Alvarenga, 143',    'JD. Vera Cruz',          'Sorocaba',   'SP', '994588778', 'renata@ig.com.br',     '1986-10-23 00:00:00.000'),
-('45134643564', 'Joaquim Ferreira de Souza Junior',  'Rua Outubro Vermelho, 1333',    'JD. Santa Rosália',      'Votorantim', 'SP', '998934778', 'joaquim@terra.com.br', '1987-11-22 00:00:00.000'),
-('15345967895', 'Ladislau Ferreira',                 'Rua Orlando Alvarenga, 1454',   'JD. Vera Cruz',          'Sorocaba',   'SP', '993988778', 'ladislau@uou.com.br',  '1988-12-21 00:00:00.000'),
-('15242357685', 'Vanessa Oliveira',                  'Rua das Flores, 111',           'JD. do Sol',             'Votorantim', 'SP', '945488778', 'vanessa@ig.com.br',    '1989-12-20 00:00:00.000');
+('321322323', 'Edson Martin Feitosa',              'Rua Orlando Alvarenga, 1',      'JD. Vera Cruz',          'Sorocaba',   'SP', '998988778', 'edson@terra.com.br',   '1982-04-29 00:00:00.000', 'm'),
+('123412341', 'Rafael Fernando de Moreaes Moreno', 'Rua Francisco de Souza, 123',   'JD. Nova Esperança',     'São Roque',  'SP', '993423432', 'rafael@uou.com.br',    '1981-05-28 00:00:00.000', 'm'),
+('345634563', 'João da Silva',                     'Rua Mario Quintana, 132',       'JD. Bartolomeu',         'Sorocaba',   'SP', '998458778', 'joao@ig.com.br',       '1980-06-27 00:00:00.000', 'm'),
+('574568243', 'Maria Chiquinha',                   'Rua Padre Luiz, 1345',          'JD. Vera Cruz',          'Sorocaba',   'SP', '993458778', 'maria@terra.com.br',   '1983-07-26 00:00:00.000', 'f'),
+('459876543', 'Rafael Nunes Sales',                'Rua Orlando Alvarenga, 174',    'JD. Vera Cruz',          'Sorocaba',   'SP', '998934548', 'rafael@ig.com.br',     '1984-08-25 00:00:00.000', 'm'),
+('632984246', 'Daniela Martin Feitosa',            'Rua Guilherme Oliveira, 34561', 'JD. Vera das Acássicas', 'Votorantim', 'SP', '958988778', 'daniela@uou.com.br',   '1985-09-24 00:00:00.000', 'f'),
+('248423478', 'Renata Cristina',                   'Rua Orlando Alvarenga, 143',    'JD. Vera Cruz',          'Sorocaba',   'SP', '994588778', 'renata@ig.com.br',     '1986-10-23 00:00:00.000', 'f'),
+('451346435', 'Joaquim Ferreira de Souza Junior',  'Rua Outubro Vermelho, 1333',    'JD. Santa Rosália',      'Votorantim', 'SP', '998934778', 'joaquim@terra.com.br', '1987-11-22 00:00:00.000', 'm'),
+('153459678', 'Ladislau Ferreira',                 'Rua Orlando Alvarenga, 1454',   'JD. Vera Cruz',          'Sorocaba',   'SP', '993988778', 'ladislau@uou.com.br',  '1988-12-21 00:00:00.000', 'm'),
+('152423576', 'Vanessa Oliveira',                  'Rua das Flores, 111',           'JD. do Sol',             'Votorantim', 'SP', '945488778', 'vanessa@ig.com.br',    '1989-12-20 00:00:00.000', 'f');
 
 -- &&& INSERTS FILME &&& --
 INSERT INTO dbo.FILME VALUES
@@ -147,3 +148,7 @@ INSERT INTO dbo.LOCACOES VALUES
 (9, 6,   '2010-03-21 19:05:43.887', '2010-03-22 00:00:00.000'),
 (10, 10, '2010-03-20 19:05:43.887', '2010-03-21 00:00:00.000');
 
+SELECT * FROM dbo.CATEGORIA;
+SELECT * FROM dbo.CLIENTES;
+SELECT * FROM dbo.FILME;
+SELECT * FROM dbo.LOCACOES;
