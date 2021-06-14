@@ -31,11 +31,8 @@ INSERT INTO dbo.LOCACOES VALUES
 
 UPDATE dbo.FILME
 SET RESERVADA = 's'
-WHERE FILME = 'Amadeus'
+WHERE FILME IN ('Amadeus', 'Constantine')
 
-UPDATE dbo.FILME
-SET RESERVADA = 's'
-WHERE FILME = 'Constantine'
 
 /*
 3 - Nesse mesmo dia um pouco antes chegou um novo 
