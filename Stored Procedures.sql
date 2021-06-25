@@ -6,6 +6,9 @@ AS
     SELECT * FROM dbo.CLIENTES
     WHERE COD_CLIENTE = @CodCliente;
 GO
+
+EXEC PesquisarCliente N'12'
+GO
 ---------------------------------------
 
 ---------------------------------------
@@ -14,6 +17,9 @@ CREATE PROCEDURE PesquisarCategoria
 AS
     SELECT * FROM dbo.CATEGORIA
     WHERE NOME_CATEGORIA = @NomeCategoria;
+GO
+
+EXEC PesquisarCategoria N'AÇÃO'
 GO
 ---------------------------------------
 
@@ -24,6 +30,9 @@ AS
     SELECT * FROM dbo.FILME
     WHERE COD_FILME = @CodFilme;
 GO
+
+EXEC PesquisarFilme N'7'
+GO
 ---------------------------------------
 
 ---------------------------------------
@@ -32,6 +41,9 @@ CREATE PROCEDURE PesquisarLocacao
 AS
     SELECT * FROM dbo.LOCACOES
     WHERE COD_LOCACAO = @CodLocacao;
+GO
+
+EXEC PesquisarLocacao N'12'
 GO
 ---------------------------------------
 
@@ -66,6 +78,22 @@ AS
     @DataNasc,
     @Sexo);
 GO
+
+-- Pequena Homenagem ao meu tio Adriano
+-- Faleceu dia 22/06/21
+-- Deixará saudades <3
+EXEC AdicionarCliente
+    N'000000000',
+    N'Adriano Vieira',
+    N'Debaixo das Asas do Senhor Jesus',
+    N'Céu',
+    N'Céu',
+    N'CE',
+    N'xxxxx-xxxx',
+    N'adriano.moscot@gmail.com',
+    '2021-06-22',
+    'm'
+GO
 ---------------------------------------
 
 --------------------------------------
@@ -74,6 +102,10 @@ CREATE PROCEDURE AdicionarCategoria
 AS
     INSERT INTO dbo.CATEGORIA VALUES
     (@NomeCategoria);
+GO
+
+EXEC AdicionarCategoria
+    N'SUSPENSE'
 GO
 ---------------------------------------
 
@@ -91,6 +123,14 @@ AS
     @Diretor,
     @ValorLocacao,
     @Reservada);
+GO
+
+EXEC AdicionarFilme
+    N'John Wick - De volta ao Jogo',
+    N'1',
+    N'Chad Stanhelski',
+    42.42,
+    'n'
 GO
 ---------------------------------------
 
@@ -110,50 +150,18 @@ AS
     @DataRetirada,
     @DataDevolução);
 GO
----------------------------------------
 
-
-
--- (03) - Procedure para Excluir
----------------------------------------
-CREATE PROCEDURE ExcluirCliente
-    @CodCliente NVARCHAR(50)
-AS
-    DELETE FROM dbo.CLIENTES
-    WHERE COD_CLIENTE = @CodCliente
-GO
----------------------------------------
-
----------------------------------------
-CREATE PROCEDURE ExcluirCategoria
-    @NomeCategoria NVARCHAR(50)
-AS
-    DELETE FROM dbo.CATEGORIA
-    WHERE NOME_CATEGORIA = @NomeCategoria
-GO
----------------------------------------
-
----------------------------------------
-CREATE PROCEDURE ExcluirFilme
-    @CodFilme NVARCHAR(50)
-AS
-    DELETE FROM dbo.FILME
-    WHERE COD_FILME = @CodFilme
-GO
----------------------------------------
-
----------------------------------------
-CREATE PROCEDURE ExcluirLocacao
-    @CodLocacao NVARCHAR(50)
-AS
-    DELETE FROM dbo.LOCACOES
-    WHERE COD_LOCACAO = @CodLocacao
+EXEC AdicionarLocacao
+    N'12',
+    N'21',
+    '2021-06-25',
+    '2021-06-27'
 GO
 ---------------------------------------
 
 
 
--- (04) - Procedure para Alterar
+-- (03) - Procedure para Alterar
 ---------------------------------------
 CREATE PROCEDURE AlterarCliente
     @CodCliente NVARCHAR(20),
@@ -181,6 +189,20 @@ AS
     SEXO = @Sexo
     WHERE COD_CLIENTE = @CodCliente
 GO
+
+EXEC AlterarCliente
+    N'5',
+    N'459876543',
+    N'Rafael Nunes Sales',
+    N'Rua Guilherme Orlando, 333',
+    N'JD. Santa Rosália',
+    N'Sorocaba',
+    N'SP',
+    N'932145543',
+    N'rafael@hacker.com.br',
+    '1999-02-24 00:00:00.000',
+    'm'
+GO
 ---------------------------------------
 
 ---------------------------------------
@@ -191,6 +213,11 @@ AS
     UPDATE dbo.CATEGORIA SET
     NOME_CATEGORIA = @NomeCategoria
     WHERE COD_CATEGORIA = @CodCategoria
+GO
+
+EXEC AlterarCategoria
+    N'1',
+    N'ACTION'
 GO
 ---------------------------------------
 
@@ -211,6 +238,15 @@ AS
     RESERVADA = @Reservada
     WHERE COD_FILME = @CodFilme
 GO
+
+EXEC AlterarFilme
+    N'21',
+    'John Wick - De Volta ao Jogo',
+    N'1',
+    'Chad Stanhelski',
+    42.42,
+    's'
+GO
 ---------------------------------------
 
 ---------------------------------------
@@ -230,6 +266,67 @@ AS
     DATA_RETIRADA = @DataRetirada,
     DATA_DEVOLUCAO = @DataDevolução
     WHERE COD_LOCACAO = @CodLocacao 
+GO
+
+EXEC AlterarLocacao
+    N'26',
+    N'12',
+    N'21',
+    '2021-06-25',
+    '2022-06-27'
+GO
+---------------------------------------
+
+-- (04) - Procedure para Excluir
+---------------------------------------
+CREATE PROCEDURE ExcluirCliente
+    @CodCliente NVARCHAR(50)
+AS
+    DELETE FROM dbo.CLIENTES
+    WHERE COD_CLIENTE = @CodCliente
+GO
+
+EXEC ExcluirCliente
+    N'9'
+GO
+---------------------------------------
+
+---------------------------------------
+CREATE PROCEDURE ExcluirCategoria
+    @NomeCategoria NVARCHAR(50)
+AS
+    DELETE FROM dbo.CATEGORIA
+    WHERE NOME_CATEGORIA = @NomeCategoria
+GO
+
+EXEC ExcluirCategoria
+    N'SUSPENSE'
+GO
+---------------------------------------
+
+---------------------------------------
+CREATE PROCEDURE ExcluirFilme
+    @CodFilme NVARCHAR(50)
+AS
+    DELETE FROM dbo.FILME
+    WHERE COD_FILME = @CodFilme
+GO
+
+EXEC ExcluirFilme
+    N'15'
+GO
+---------------------------------------
+
+---------------------------------------
+CREATE PROCEDURE ExcluirLocacao
+    @CodLocacao NVARCHAR(50)
+AS
+    DELETE FROM dbo.LOCACOES
+    WHERE COD_LOCACAO = @CodLocacao
+GO
+
+EXEC ExcluirLocacao
+    N'25'
 GO
 ---------------------------------------
 
