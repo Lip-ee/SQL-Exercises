@@ -330,6 +330,58 @@ EXEC ExcluirLocacao
 GO
 ---------------------------------------
 
+/*
+(05) - Criar uma Stored Procedure que
+mostre os clientes aniversariantes
+do mês fornecido pelo user
+*/ ------------------------------------
+CREATE PROCEDURE AniversarioClientesMes
+    @Mes INT
+AS
+    SELECT NOME FROM dbo.CLIENTES
+    WHERE DATEPART(MONTH, DATANASCIMENTO) = @Mes
+GO
+
+EXEC AniversarioClientesMes
+    10
+GO
+---------------------------------------
+
+/*
+(06) - Criar uma Stored Procedure que 
+resuma a quantidade de aniversariantes
+por mês (info geral de aniversariantes)
+*/ ------------------------------------
+CREATE PROCEDURE AniversarioClientesGeral
+AS
+    -- Criando uma variável p/ armazenar meses (espécie de Vetor)
+    DECLARE @Meses TABLE (Mes NVARCHAR(20), NumMes INT)
+    -- Inserindo os meses na variável anterior
+    INSERT INTO @Meses VALUES
+    ('JAN', 01),
+    ('FEV', 02),
+    ('MAR', 03),
+    ('ABR', 04),
+    ('MAI', 05),
+    ('JUN', 06),
+    ('JUL', 07),
+    ('AGO', 08),
+    ('SET', 09),
+    ('OUT', 10),
+    ('NOV', 11),
+    ('DEZ', 12);
+
+    SELECT me.Mes AS 'Mês:', COUNT(cl.COD_CLIENTE) AS 'Qtd. Aniversariantes'
+    FROM @Meses me LEFT JOIN dbo.CLIENTES cl
+        on DATEPART(MONTH, cl.DATANASCIMENTO) = me.NumMes
+    GROUP BY Mes, me.NumMes
+    ORDER BY me.NumMes ASC
+GO
+
+EXEC AniversarioClientesGeral
+GO
+---------------------------------------
+
 
 
 -- SELECTS
